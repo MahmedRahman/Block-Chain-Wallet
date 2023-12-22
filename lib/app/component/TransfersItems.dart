@@ -24,23 +24,79 @@ Widget TransfersItems(Transactions transactions) {
                 SizedBox(
                   height: 10,
                 ),
+                Text(
+                  "TransactionID",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
                 Text(transactions.transactionID),
                 SizedBox(
-                  height: 10,
+                  height: 5,
+                ),
+                Divider(),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "Transaction Date",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(transactions.date),
                 SizedBox(
-                  height: 10,
+                  height: 5,
+                ),
+                Divider(),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "From",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(transactions.receiver),
                 SizedBox(
-                  height: 10,
+                  height: 5,
+                ),
+                Divider(),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "To",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(transactions.sender),
                 SizedBox(
-                  height: 10,
+                  height: 5,
+                ),
+                Divider(),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "Amount",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(transactions.amount),
+                SizedBox(
+                  height: 5,
+                ),
+                Divider(),
+                SizedBox(
+                  height: 5,
+                ),
               ],
             ),
           ),
@@ -50,11 +106,13 @@ Widget TransfersItems(Transactions transactions) {
     child: Card(
       child: ListTile(
         leading: CircleAvatar(
-          child: Icon(Icons.money),
+          child: transactions.transactionStatus == "0"
+              ? IconButton(onPressed: () {}, icon: Icon(Icons.arrow_downward))
+              : IconButton(onPressed: () {}, icon: Icon(Icons.arrow_upward)),
         ),
-        title: Text(" ${transactions.sender} "),
+        title: Text(" ${transactions.transactionID} "),
         subtitle: Text("${transactions.date} ${transactions.amount}"),
-        trailing: Text(transactions.transactionID),
+        trailing: Icon(Icons.more_vert),
       ),
     ),
   );

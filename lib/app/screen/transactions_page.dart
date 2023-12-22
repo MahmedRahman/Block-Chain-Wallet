@@ -8,7 +8,7 @@ class transactionsPage extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Transfers Old"),
+        title: Text("Transfers"),
       ),
       body: Expanded(
         child: ListView.builder(

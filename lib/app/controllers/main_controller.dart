@@ -1,23 +1,41 @@
+import 'package:app/app/data/transactions.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  //TODO: Implement HomeController
+class MainController extends GetxController {
+  void addTransfar({
+    required String receiver,
+    required String sender,
+    required String amount,
+  }) {
+    Transactions transactions = Transactions(
+      date: DateTime.now().toString(),
+      receiver: receiver.toString(),
+      sender: sender.toString(),
+      amount: amount.toString(),
+      transactionID: "T ${KListOfTransactions.value.length + 1}",
+      transactionStatus: "1",
+    );
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+    KListOfTransactions.insert(0, transactions);
+
+    Get.dialog(
+      AlertDialog(
+        title: Text('Success'),
+        content: Text("Money sent successfully!'"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.back(); // Close the dialog
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  void updateData() {}
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  void _submitForm() {}
 }

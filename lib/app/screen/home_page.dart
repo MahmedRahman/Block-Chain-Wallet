@@ -1,4 +1,5 @@
 import 'package:app/app/component/TransfersItems.dart';
+import 'package:app/app/controllers/main_controller.dart';
 import 'package:app/app/data/transactions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -8,46 +9,51 @@ class HomePage extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              'Welcome, Valentino Morose 👋',
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            WalletBox(),
-            SizedBox(
-              height: 16,
-            ),
-            Text(
-              "Recent Transfers",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+      body: RefreshIndicator(
+        onRefresh: () async {
+          Get.find<MainController>().updateData();
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 8,
               ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: KListOfTransactions.length,
-                itemBuilder: (context, index) {
-                  return TransfersItems(KListOfTransactions.elementAt(index));
-                },
+              Text(
+                'Welcome, Valentino Morose 👋',
+                style: TextStyle(fontSize: 20),
               ),
-            )
-          ],
+              SizedBox(
+                height: 16,
+              ),
+              WalletBox(),
+              SizedBox(
+                height: 16,
+              ),
+              Text(
+                "Recent Transfers",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: KListOfTransactions.length,
+                  itemBuilder: (context, index) {
+                    return TransfersItems(KListOfTransactions.elementAt(index));
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -96,13 +102,24 @@ class HomePage extends GetView {
                 SizedBox(
                   height: 10,
                 ),
-                Text(
-                  "\$ ${Transactions.calculateTotalAmount(KListOfTransactions).toString()}",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                  ),
-                ),
+                // Text(
+                //   "",
+                //   // "\$ ${Transactions.calculateTotalAmount(KListOfTransactions.value).toString()}",
+                //   style: TextStyle(
+                //     color: Colors.white,
+                //     fontSize: 40,
+                //   ),
+                // )
+                Obx(() {
+                  return Text(
+                    KTransactionsBlanse.value.toString(),
+                    // "\$ ${Transactions.calculateTotalAmount(KListOfTransactions.value).toString()}",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 40,
+                    ),
+                  );
+                }),
               ],
             ),
           ],

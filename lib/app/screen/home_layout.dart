@@ -7,11 +7,9 @@ import 'package:get/get.dart';
 
 import '../controllers/main_controller.dart';
 
-
-
 RxInt SelectPage = 0.obs;
 
-class HomeView extends GetView<HomeController> {
+class HomeView extends GetView {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -83,7 +81,3 @@ class HomeView extends GetView<HomeController> {
     );
   }
 }
-
-
-
-
