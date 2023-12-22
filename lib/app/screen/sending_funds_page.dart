@@ -106,7 +106,6 @@ class sendingFundsPage extends GetView {
                       if (num.parse(_Amount.toString()) > KTransactionsBlanse.value) {
                         // Handle insufficient balance
 
-                        KTransactionsBlanse.value = KTransactionsBlanse.value - num.parse(_Amount.toString());
                         Get.dialog(
                           AlertDialog(
                             title: Text("Error"),
@@ -126,6 +125,7 @@ class sendingFundsPage extends GetView {
 
                         return;
                       }
+                      KTransactionsBlanse.value = KTransactionsBlanse.value - num.parse(_Amount.toString());
 
                       Get.find<MainController>().addTransfar(
                         amount: _Amount.toString(),
