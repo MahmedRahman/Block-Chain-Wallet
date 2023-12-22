@@ -75,6 +75,7 @@ class HomeView extends GetView {
             HomePage(),
             transactionsPage(),
             sendingFundsPage(),
+            Container(),
           ],
         );
       }),

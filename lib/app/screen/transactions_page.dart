@@ -10,13 +10,13 @@ class transactionsPage extends GetView {
       appBar: AppBar(
         title: Text("Transfers"),
       ),
-      body: Expanded(
-        child: ListView.builder(
-          itemCount: KListOfTransactions.length,
-          itemBuilder: (context, index) {
-            return TransfersItems(KListOfTransactions.elementAt(index));
-          },
-        ),
+      body: ListView.builder(
+        itemCount: KListOfTransactions.value.length,
+        itemBuilder: (context, index) {
+          return TransfersItems(
+            KListOfTransactions.value.elementAt(index),
+          );
+        },
       ),
     );
   }
